@@ -65,4 +65,5 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compile.encoding>UTF-8</maven.compile.encoding>
 	</properties>
+
 </project>
