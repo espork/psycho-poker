@@ -32,7 +32,6 @@
 					<maxmem>512m</maxmem>
 				</configuration>
 			</plugin>
-			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
@@ -65,5 +64,4 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compile.encoding>UTF-8</maven.compile.encoding>
 	</properties>
-
 </project>
