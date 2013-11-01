@@ -34,7 +34,10 @@ public class CardCombinator {
 		  return this;
 	  }
 	  
-	  public List<Card[]> combine(int beginning,int end, int depth){
+	  public List<Card[]> combine() { return this.combine(0, this.elements.length - rate, 0); }
+	  
+	  
+	  private List<Card[]> combine(int beginning,int end, int depth){
 		  
 		  	List<Card[]> combinations = new ArrayList<Card[]>();
 		  	

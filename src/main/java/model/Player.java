@@ -42,7 +42,7 @@ public class Player {
 			CardCombinator combinator = CardCombinator.from(hand.getCards());
 			for(int number = 1 ; number <this.hand.size() ; number ++){
 				
-				List<Card[]> combinations = combinator.withRate(number).combine(0, this.hand.size()-number, 0);
+				List<Card[]> combinations = combinator.withRate(number).combine();
 				
 				for(Card[] combination : combinations){
 					
