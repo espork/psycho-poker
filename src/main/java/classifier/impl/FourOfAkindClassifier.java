@@ -11,16 +11,8 @@ public class FourOfAkindClassifier  implements HandClassifier{
 	public boolean isClassified(Hand hand) {
 		
 		for(Card card : hand.getCards())
-			if(hasFourCardsOf(card,hand)) return true;
+			if(hand.numberOfOccurences(card)>=4) return true;
 		
 		return false;
-	}
-
-	private boolean hasFourCardsOf(Card card,Hand hand) {
-		int count = 0;
-		for(Card cardToCompare : hand.getCards())
-			if(card.hasSameValueOf(cardToCompare)) count++;
-		
-		return count >=4;
 	}
 }

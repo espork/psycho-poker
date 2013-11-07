@@ -107,4 +107,14 @@ public class Hand {
 
 	}
 	
+	public int numberOfOccurences(Card card) {
+		
+		int number = 0;
+		
+		for(Card cardToCompare : this.getCards())
+			if(cardToCompare.hasSameValueOf(card)) number ++;
+		
+		return number;
+	}
+	
 }

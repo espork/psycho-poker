@@ -10,16 +10,8 @@ public class ThreeOfAkindClassifier implements HandClassifier{
 	public boolean isClassified(Hand hand) {
 		
 		for(Card card : hand.getCards())
-			if(hasThreeCardsOf(card,hand)) return true;
+			if(hand.numberOfOccurences(card) >=3) return true;
 		
 		return false;
-	}
-
-	private boolean hasThreeCardsOf(Card card,Hand hand) {
-		int count = 0;
-		for(Card cardToCompare : hand.getCards())
-			if(card.hasSameValueOf(cardToCompare)) count++;
-		
-		return count >=3;
 	}
 }

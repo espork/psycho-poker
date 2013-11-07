@@ -16,7 +16,7 @@ public class FullHouseClassifier implements HandClassifier {
 		int occurrences = 0;
 		for(Card card : hand.getCards()){
 			
-			occurrences = numberOfOccurences(card, hand);
+			occurrences = hand.numberOfOccurences(card);
 			if(occurrences == 2) hasTwo = true;
 			else if (occurrences == 3) hasThree = true;
 			
@@ -25,15 +25,4 @@ public class FullHouseClassifier implements HandClassifier {
 			
 		return false;
 	}
-	
-	private int numberOfOccurences(Card card, Hand hand) {
-		
-		int number = 0;
-		
-		for(Card cardToCompare : hand.getCards())
-			if(cardToCompare.hasSameValueOf(card)) number ++;
-		
-		return number;
-	}
-
 }

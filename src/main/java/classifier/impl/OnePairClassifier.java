@@ -12,20 +12,9 @@ public class OnePairClassifier implements HandClassifier {
 		hand.order();
 		
 		for(Card card : hand.getCards())
-			if( numberOfOccurences(card, hand) >= 2)
+			if( hand.numberOfOccurences(card) >= 2)
 				return true;
 			
 		return false;
 	}
-	
-	private int numberOfOccurences(Card card, Hand hand) {
-		
-		int number = 0;
-		
-		for(Card cardToCompare : hand.getCards())
-			if(cardToCompare.hasSameValueOf(card)) number ++;
-		
-		return number;
-	}
-
 }
