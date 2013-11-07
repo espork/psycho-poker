@@ -4,6 +4,7 @@ public class Card implements Comparable<Card> {
 
 	private Suit suit;
 	private CardValue value;
+	public static String PATTERN = "[2-9TJQKA][HSCD]";
 	
 	private Card(Suit suit, CardValue value) {
 		this.suit = suit;
@@ -26,26 +27,10 @@ public class Card implements Comparable<Card> {
 	
 	public static Card from(String card) {
 		
-		Suit cardSuit = null;
-		CardValue cardValue = null;
+		Suit suit = Suit.getByValue(String.valueOf(card.charAt(1)));
+		CardValue value = CardValue.getBySymbol(String.valueOf(card.charAt(0)));
 		
-		for(CardValue value : CardValue.values()){
-			if(value.getSymbol().equals(String.valueOf(card.charAt(0)))) { 
-				cardValue = value;
-				break;
-			}
-			
-		}
-		
-		for(Suit suit : Suit.values()) {
-			if(suit.getValue().equals(String.valueOf(card.charAt(1)))) {
-				cardSuit = suit;
-				break;
-			}
-		}
-		
-		
-		return new Card(cardSuit, cardValue);
+		return new Card(suit,value );
 	}
 	
 	

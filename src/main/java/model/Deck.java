@@ -20,8 +20,7 @@ public class Deck {
 		
 		Deck deck = new Deck();
 		
-		Pattern pattern = Pattern.compile("([2-9|(T|J|Q|K|A)][H|S|C|D])");
-		Matcher matcher = pattern.matcher(cards);
+		Matcher matcher = Pattern.compile(Card.PATTERN).matcher(cards);
 		
 		while (matcher.find()) {
 			 

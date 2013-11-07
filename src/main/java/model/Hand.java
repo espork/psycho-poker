@@ -1,9 +1,8 @@
 package model;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,18 +19,7 @@ import classifier.impl.TwoPairsClassifier;
 public class Hand {
 	
 	
-	private static Map<HandType,HandClassifier> map = new HashMap<HandType, HandClassifier>();
-	
-	static {
-		map.put(HandType.STRAIGHT_FLUSH, new StraightFulshClassifier());
-		map.put(HandType.FOUR_OF_A_KIND, new FourOfAkindClassifier());
-		map.put(HandType.FULL_HOUSE, new FullHouseClassifier());
-		map.put(HandType.FLUSH, new FlushClassifier());
-		map.put(HandType.STRAIGHT, new StraightClassifier());
-		map.put(HandType.THREE_OF_A_KIND, new ThreeOfAkindClassifier());
-		map.put(HandType.TWO_PAIRS, new TwoPairsClassifier());
-		map.put(HandType.ONE_PAIR, new OnePairClassifier());
-	}
+	private static List<HandClassifier> classifiers = new ArrayList<HandClassifier>();
 	
 	private List<Card> cards = new ArrayList<Card>();
 	
@@ -68,8 +56,7 @@ public class Hand {
 		
 		Hand hand = new Hand();
 		
-		Pattern pattern = Pattern.compile("([2-9|(T|J|Q|K|A)][H|S|C|D])");
-		Matcher matcher = pattern.matcher(cards);
+		Matcher matcher = Pattern.compile(Card.PATTERN).matcher(cards);
 		
 		while (matcher.find())
 			 hand.addCard(Card.from(matcher.group()));
@@ -78,8 +65,8 @@ public class Hand {
 	}
 	
 	public HandType bestType() {
-		for(HandType type : HandType.values())
-			if(map.get(type)!=null && map.get(type).isClassified(this)) return type;
+		for(HandClassifier classifier : classifiers)
+			if(classifier.isClassified(this)) return classifier.type();
 		
 		return HandType.HIGHEST_CARD;
 	}
@@ -115,6 +102,28 @@ public class Hand {
 			if(cardToCompare.hasSameValueOf(card)) number ++;
 		
 		return number;
+	}
+	
+
+	static {
+		
+		classifiers.add(new StraightFulshClassifier());
+		classifiers.add(new FourOfAkindClassifier());
+		classifiers.add(new FullHouseClassifier());
+		classifiers.add(new FlushClassifier());
+		classifiers.add(new StraightClassifier());
+		classifiers.add(new ThreeOfAkindClassifier());
+		classifiers.add(new TwoPairsClassifier());
+		classifiers.add(new OnePairClassifier());
+		
+		Collections.sort(classifiers, new Comparator<HandClassifier>() {
+
+			@Override
+			public int compare(HandClassifier classifier, HandClassifier otherClassifier) {
+				
+				return classifier.priority().compareTo(otherClassifier.priority());
+			}
+		});
 	}
 	
 }

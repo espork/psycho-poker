@@ -1,5 +1,9 @@
 package model;
 
+import java.util.HashMap;
+import java.util.Map;
+
+
 public enum CardValue {
 
 	
@@ -25,8 +29,16 @@ public enum CardValue {
 	
 	private String name;
 	private String symbol;
+	private static Map<String, CardValue> symbolMap = new HashMap<String, CardValue>();
+	
+	static {
+		for(CardValue cardValue : CardValue.values())
+			symbolMap.put(cardValue.getSymbol(), cardValue);
+	}
 	
 	public String getName() { return name; }
 	public String getSymbol() { return symbol; }
 	public int getIntValue() { return this.ordinal(); }
+	
+	public static CardValue getBySymbol(String symbol){ return CardValue.symbolMap.get(symbol); }
 }

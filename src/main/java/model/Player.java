@@ -22,22 +22,22 @@ public class Player {
 	
 	public Player play() {
 	  hand.order();
-	  Hand auxHand = new Hand();
+	  Hand experimentalHand = new Hand();
 	  
 	  for(HandType handType : HandType.values()) {
 		  	
-		  	auxHand.clear();
+		  	experimentalHand.clear();
 			if(hand.bestType() == handType){
 				newHand = hand;
 				return this;
 			}
 			
-			if(auxHand.addCards(deck.get(hand.size())).bestType() == handType){
-				newHand = auxHand;
+			if(experimentalHand.addCards(deck.get(hand.size())).bestType() == handType){
+				newHand = experimentalHand;
 				return this;
 			}
 			
-			auxHand.clear();
+			experimentalHand.clear();
 			
 			CardCombinator combinator = CardCombinator.from(hand.getCards());
 			for(int number = 1 ; number <this.hand.size() ; number ++){
@@ -46,12 +46,12 @@ public class Player {
 				
 				for(Card[] combination : combinations){
 					
-					if(auxHand.addCards((List<Card>)Arrays.asList(combination)).addCards(deck.get(hand.size() -auxHand.size())).bestType() == handType) {
-						newHand = auxHand;
+					if(experimentalHand.addCards((List<Card>)Arrays.asList(combination)).addCards(deck.get(hand.size() -experimentalHand.size())).bestType() == handType) {
+						newHand = experimentalHand;
 						return this;
 					}
 					
-					auxHand.clear();
+					experimentalHand.clear();
 				}
 			}
 		}
