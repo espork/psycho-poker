@@ -2,6 +2,7 @@ package classifier.impl;
 
 import model.Card;
 import model.Hand;
+import model.HandType;
 import classifier.HandClassifier;
 
 public class TwoPairsClassifier implements HandClassifier {
@@ -27,4 +28,11 @@ public class TwoPairsClassifier implements HandClassifier {
 			
 		return false;
 	}
+	
+	
+	@Override
+	public HandType type() { return HandType.TWO_PAIRS; }
+
+	@Override
+	public Integer priority() { return HandType.TWO_PAIRS.ordinal(); }
 }

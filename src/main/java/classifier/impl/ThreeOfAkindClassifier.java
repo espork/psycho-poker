@@ -2,6 +2,7 @@ package classifier.impl;
 
 import model.Card;
 import model.Hand;
+import model.HandType;
 import classifier.HandClassifier;
 
 public class ThreeOfAkindClassifier implements HandClassifier{
@@ -14,4 +15,11 @@ public class ThreeOfAkindClassifier implements HandClassifier{
 		
 		return false;
 	}
+	
+	
+	@Override
+	public HandType type() { return HandType.THREE_OF_A_KIND; }
+
+	@Override
+	public Integer priority() { return HandType.THREE_OF_A_KIND.ordinal(); }
 }

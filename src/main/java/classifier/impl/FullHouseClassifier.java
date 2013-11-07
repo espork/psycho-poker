@@ -2,6 +2,7 @@ package classifier.impl;
 
 import model.Card;
 import model.Hand;
+import model.HandType;
 import classifier.HandClassifier;
 
 public class FullHouseClassifier implements HandClassifier {
@@ -25,4 +26,10 @@ public class FullHouseClassifier implements HandClassifier {
 			
 		return false;
 	}
+	
+	@Override
+	public HandType type() { return HandType.FULL_HOUSE; }
+
+	@Override
+	public Integer priority() { return HandType.FULL_HOUSE.ordinal(); }
 }
