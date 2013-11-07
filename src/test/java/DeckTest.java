@@ -29,8 +29,8 @@ public class DeckTest {
 		
 		assertEquals("The cads size should be 3", 3, cards.size());
 		assertEquals("The first card shoud be 4S",Card.from("4S"), cards.get(0));
-		assertEquals("The first card shoud be 5S",Card.from("5D"), cards.get(1));
-		assertEquals("The first card shoud be 5S",Card.from("AH"), cards.get(2));
+		assertEquals("The first card shoud be 5D",Card.from("5D"), cards.get(1));
+		assertEquals("The first card shoud be AH",Card.from("AH"), cards.get(2));
 	}
 }
 
